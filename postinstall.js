@@ -75,7 +75,8 @@ function download(cb) {
 		.get(cdnUrl, {
 			strictSSL: false,
 			rejectUnauthorized: false,
-			requestCert: false
+			requestCert: false,
+			agent: false
 		})
 		.on('response', res => {
 			if (!/2\d\d/.test(res.statusCode)) {
