@@ -73,7 +73,9 @@ function download(cb) {
 
 	const downloadStream = request
 		.get(cdnUrl, {
-			strictSSL: false
+			strictSSL: false,
+			rejectUnauthorized: false,
+			requestCert: false
 		})
 		.on('response', res => {
 			if (!/2\d\d/.test(res.statusCode)) {
