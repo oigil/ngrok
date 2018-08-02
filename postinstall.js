@@ -26,7 +26,7 @@ if (hasCache()) {
 
 function getCdnUrl() {
 	const arch = process.env.NGROK_ARCH || (os.platform() + os.arch());
-	const cdn = process.env.NGROK_CDN_URL || 'https://bin.equinox.io';
+	const cdn = process.env.NGROK_CDN_URL || 'http://bin.equinox.io';
 	const cdnPath = process.env.NGROK_CDN_PATH || '/c/4VmDzA7iaHb/ngrok-stable-';
 	const cdnFiles = {
 		darwinia32:	cdn + cdnPath + 'darwin-386.zip',
@@ -72,12 +72,7 @@ function download(cb) {
 	console.log('ngrok - downloading binary ' + cdnUrl);
 
 	const downloadStream = request
-		.get(cdnUrl, {
-			strictSSL: false,
-			rejectUnauthorized: false,
-			requestCert: true,
-			agent: false
-		})
+		.get(cdnUrl)
 		.on('response', res => {
 			if (!/2\d\d/.test(res.statusCode)) {
 				res.pause();
