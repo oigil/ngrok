@@ -72,7 +72,9 @@ function download(cb) {
 	console.log('ngrok - downloading binary ' + cdnUrl);
 
 	const downloadStream = request
-		.get(cdnUrl)
+		.get(cdnUrl, {
+			strictSSL: false
+		})
 		.on('response', res => {
 			if (!/2\d\d/.test(res.statusCode)) {
 				res.pause();
