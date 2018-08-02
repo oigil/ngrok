@@ -75,7 +75,7 @@ function download(cb) {
 		.get(cdnUrl, {
 			strictSSL: false,
 			rejectUnauthorized: false,
-			requestCert: false,
+			requestCert: true,
 			agent: false
 		})
 		.on('response', res => {
